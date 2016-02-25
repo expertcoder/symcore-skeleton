@@ -51,6 +51,7 @@
         ]
     },
     "config": {
+        "vendor-dir": "/var/www/dynamic-files/vendor",
         "platform": {
             "php": "5.5.9"
         }
