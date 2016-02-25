@@ -1,0 +1,45 @@
+############################################################
+# Symcore Script
+# Setup permissions on symfony cache and log folders
+#
+# Adapted from: http://symfony.com/doc/current/book/installation.html#configuration-and-setup (Old docs)
+#               http://symfony.com/doc/current/book/installation.html#book-installation-permissions (New docs)
+#
+# Note: When using vagrant/virtual box, if you get an error similar to
+#
+#       setfacl: /var/www/xxxxxxxx/app/cache/dev: Operation not supported
+#
+# This might be caused because the cache and log folders are under virtual box synced folders
+############################################################
+
+
+# determine the webserver user
+HTTPDUSER=`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
+
+echo "Httpd User determined as:"
+echo $HTTPDUSER
+
+echo "Setting permissions on Symfony Cache and Log dirs"
+
+#Note: these values should match the values in AppKernel.php
+SYMFONY_CACHE_DIR="/dev/shm/symfony/cache"
+SYMFONY_LOGS_DIR="/dev/shm/symfony/logs"
+
+echo "Symfony Cache Dir determined as:"
+echo $SYMFONY_CACHE_DIR
+
+echo "Symfony Log Dir determined as:"
+echo $SYMFONY_LOGS_DIR
+
+mkdir -p $SYMFONY_CACHE_DIR
+mkdir -p $SYMFONY_LOGS_DIR
+
+#TODO - These 2 lines quick work around
+sudo chmod 777 $SYMFONY_CACHE_DIR
+sudo chmod 777 $SYMFONY_LOGS_DIR
+
+sudo chown $HTTPDUSER:$HTTPDUSER -R $SYMFONY_CACHE_DIR
+sudo chown $HTTPDUSER:$HTTPDUSER -R $SYMFONY_LOGS_DIR
+
+sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX $SYMFONY_CACHE_DIR $SYMFONY_LOGS_DIR
+sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX $SYMFONY_CACHE_DIR $SYMFONY_LOGS_DIR

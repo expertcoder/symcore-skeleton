@@ -35,12 +35,32 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+        /**
+         * Using the operating systems "RAM drive". This has a few advantages
+         * - When using Vagrant/virtual box, this will make the cache folder avoid using the synced folder. This should
+         *   be faster. Also under some circumstances there was a problem using "chmod" on the files over the synced folder
+         * - The "RAM Drive" is much faster than a regular hard drive.
+         *
+         * see related script "bin/core-folder-permissions".
+         */
+
+        return '/dev/shm/symfony/cache';
     }
 
     public function getLogDir()
     {
-        return dirname(__DIR__).'/var/logs';
+        /**
+         * TODO
+         *
+         * When storing the logs over the virtual box synced folder there was a problem.
+         * For the moment using hte "RAM drive" for logs also.
+         *
+         * see related script "bin/core-folder-permissions".
+         */
+
+        return '/dev/shm/symfony/logs';
+
+//        return dirname(__DIR__).'/var/logs';
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
