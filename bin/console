@@ -17,13 +17,17 @@ set_time_limit(0);
 $loader = require __DIR__.'/../app/autoload.php';
 
 $input = new ArgvInput();
-$env = $input->getParameterOption(['--env', '-e'], getenv('SYMFONY_ENV') ?: 'dev');
-$debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(['--no-debug', '']) && $env !== 'prod';
+
+require __DIR__.'/../symfony-env.php';
+
+$symfonyEnv = symcore_get_symfony_env();
+
+$debug = symcore_get_debug($symfonyEnv);
 
 if ($debug) {
-    Debug::enable();
+	Debug::enable();
 }
 
-$kernel = new AppKernel($env, $debug);
+$kernel = new AppKernel($symfonyEnv, $debug);
 $application = new Application($kernel);
 $application->run($input);

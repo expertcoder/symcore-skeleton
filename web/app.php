@@ -1,12 +1,24 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+//use Symfony\Component\Debug\Debug;
+
+//While Symfony is bootstrapping, display errors
+$existingPhpDisplayErrors = ini_get('display_errors');
+ini_set('display_errors', 1);
 
 /**
  * @var Composer\Autoload\ClassLoader
  */
 $loader = require __DIR__.'/../app/autoload.php';
 include_once __DIR__.'/../var/bootstrap.php.cache';
+
+require __DIR__.'/../symfony-env.php';
+
+
+$symfonyEnv = symcore_get_symfony_env();
+
+$debug = symcore_get_debug($symfonyEnv);
 
 // Enable APC for autoloading to improve performance.
 // You should change the ApcClassLoader first argument to a unique prefix
@@ -18,7 +30,17 @@ $loader->unregister();
 $apcLoader->register(true);
 */
 
-$kernel = new AppKernel('prod', false);
+//TODO
+//if ($debug)
+//{
+//	Debug::enable();
+//}
+
+//Now restore this to what it was at the start of the script
+ini_set('display_errors', $existingPhpDisplayErrors);
+
+
+$kernel = new AppKernel($symfonyEnv, $debug);
 $kernel->loadClassCache();
 //$kernel = new AppCache($kernel);
 
