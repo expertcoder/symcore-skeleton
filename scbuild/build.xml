@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    to run this please use the following commands
+
+    sudo bash
+    phing first-build
+-->
+
+<project name="[[EDIT]]" default="default-message" phingVersion="2.13.0">
+
+    <target name="default-message" >
+        <echo msg="This will not do anything, please specifiy the same of the target you want to run. Did you intend on running 'phing first-build' or 'phing release'" />
+    </target>
+
+
+    <target name="first-build" depends="
+                                    composer-configure,
+                                    composer-install,
+                                    symfony-core-file-permissions,
+                                    reset-db,
+                                    install-node-packages,
+                                    symfony-assetic-dump,
+                                    symfony-assets-symlink
+                                    ">
+    </target>
+
+
+    <target name="release" depends="
+                                    composer-install,
+                                    symfony-cache-clear,
+                                    install-node-packages,
+                                    symfony-assetic-dump,
+                                    symfony-assets-symlink
+                                    "
+            description=""
+    >
+        <!-- Specifically run this here, rather than using "depends" which may not run this exactly when I want-->
+        <phingcall target="symfony-cache-clear" />
+        <exec command="symcon doctrine:migrations:migrate --no-interaction" passthru="true" checkreturn="true" />
+
+    </target>
+
+    <target name="symfony-core-file-permissions">
+        <!-- Note: this may not be working, you can try manually running the script -->
+        <echo msg="Setting up permissions on Symfony log and cache folders" />
+        <exec command="./core-file-permissions.sh" dir="../bin" passthru="true" />
+    </target>
+
+    <target name="restart-apache" description="Restarts the web server">
+        <exec command="sudo service httpd restart" passthru="true" />
+    </target>
+
+    <target name="doctrine-schema-update"
+            description="run symfony console doctrine:schema:update" >
+        <exec command="symcon doctrine:schema:update --force" passthru="true" checkreturn="true" />
+    </target>
+
+    <target name="symfony-assetic-dump"
+            description="Assetic dump" >
+        <!-- TODO -->
+        <!--<exec command="symcon assetic:dump" passthru="true" checkreturn="true" />-->
+    </target>
+
+    <target name="symfony-cache-clear"
+            description="Clear Symfony cache, and also re-run the permissions setup" >
+        <exec command="symcon cache:clear" passthru="true" checkreturn="true" />
+        <!-- Specifically run this here, rather than using "depends" which may not run this exactly when I want-->
+        <phingcall target="symfony-core-file-permissions" />
+    </target>
+
+    <target name="symfony-assets-symlink"
+            description="Setup Symlinks to Symfony bundle assets" >
+        <exec command="symcon assets:install --symlink" passthru="true" checkreturn="true" />
+    </target>
+
+    <target name="install-node-packages"
+            description="Install required node packages globally" >
+        <exec command="npm install less --global"  passthru="true" />
+    </target>
+
+    <target name="purge-db" description="Delete the entire database and create a new blank one" >
+        <exec command="mysql -e 'DROP DATABASE IF EXISTS symfony; CREATE DATABASE symfony;'"  passthru="true" />
+    </target>
+
+    <!-- This is really only used while developing -->
+    <target name="reset-db"
+            description="Reset the database" >
+        <phingcall target="purge-db" />
+        <phingcall target="doctrine-schema-update" />
+    </target>
+
+    <target name="composer-install">
+        <exec command="composer install" passthru="true" checkreturn="true" />
+    </target>
+
+    <!-- sometimes when running composer update or other commands, you can hit github API limits
+         so an Oauth key was created and setup with composer. check https://github.com/settings/tokens  (Personal access token)
+         It is safe to run this command multiple times.
+    -->
+    <target name="composer-configure">
+        <exec command="composer --global config github-oauth.github.com [[EDIT]]" passthru="true" checkreturn="true" />
+    </target>
+
+</project>
