@@ -75,8 +75,8 @@ fos_user:
             validation_groups: [fosuser_custom_profile]
 
 cspoo_swiftmailer_mailgun:
-    key: "TODO This shuold come from parametesr.yml.dist when you run composer"
-    domain: "TODO This shuold come from parametesr.yml.dist when you run composer"
+    key: "%mailgun_key%"
+    domain: "%mailgun_domain%"
 
 swiftmailer:
     transport: "mailgun"
