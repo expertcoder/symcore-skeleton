@@ -44,7 +44,7 @@
     <target name="symfony-core-file-permissions">
         <!-- Note: this may not be working, you can try manually running the script -->
         <echo msg="Setting up permissions on Symfony log and cache folders" />
-        <exec command="./core-file-permissions.sh" dir="../bin" passthru="true" />
+        <exec command="./core-file-permissions" dir="/var/www/application/bin" passthru="true" />
     </target>
 
     <target name="restart-apache" description="Restarts the web server">
@@ -88,6 +88,7 @@
             description="Reset the database" >
         <phingcall target="purge-db" />
         <phingcall target="doctrine-schema-update" />
+        <exec command="symcon doctrine:fixtures:load --no-interaction" passthru="true" checkreturn="true" />
     </target>
 
     <target name="composer-install">

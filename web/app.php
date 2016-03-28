@@ -1,7 +1,7 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
-//use Symfony\Component\Debug\Debug;
+use Symfony\Component\Debug\Debug;
 
 //While Symfony is bootstrapping, display errors
 $existingPhpDisplayErrors = ini_get('display_errors');
@@ -30,11 +30,10 @@ $loader->unregister();
 $apcLoader->register(true);
 */
 
-//TODO
-//if ($debug)
-//{
-//	Debug::enable();
-//}
+if ($debug)
+{
+	Debug::enable();
+}
 
 //Now restore this to what it was at the start of the script
 ini_set('display_errors', $existingPhpDisplayErrors);
