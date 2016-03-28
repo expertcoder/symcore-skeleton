@@ -61,14 +61,6 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-lsw_memcache:
-    session:
-        pool: default
-    pools:
-        default:
-            servers:
-              - { host: localhost, tcp_port: 11211 }
-
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main

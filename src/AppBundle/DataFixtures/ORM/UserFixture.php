@@ -12,7 +12,7 @@ class UserFixture implements FixtureInterface
 	{
 		$u = new User();
 		$u->setName('John Smith');
-		$u->setEmail('info#example.com');
+		$u->setEmail('info@example.com');
 		$u->setPlainPassword('mypassword');
 		$u->setEnabled(1);
 		$u->setRoles(['ROLE_SUPER_ADMIN']);

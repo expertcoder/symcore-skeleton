@@ -1,0 +1,11 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+    <div class="row" >
+        <div class="col-xs-12" >
+            <h3>Hello World</h3>
+            <p><a href="{{ path('fos_user_security_login') }}" class="btn btn-primary" >Login</a></p>
+            <p><a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary" >Register</a></p>
+        </div>
+    </div>
+{% endblock %}
