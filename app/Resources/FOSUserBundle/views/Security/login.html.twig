@@ -85,7 +85,7 @@
 {% endblock stylesheet %}
 
 {% block fos_user_content %}
-    {# HTML and CSS apated from https://gist.github.com/bMinaise/7329874 and /work/ssat/dynamic-files/vendor/friendsofsymfony/user-bundle/Resources/views/Security/login.html.twig #}
+    {# HTML and CSS apated from https://gist.github.com/bMinaise/7329874 and /vendor/friendsofsymfony/user-bundle/Resources/views/Security/login.html.twig #}
 
     <div class="container">
         <div class="row">
@@ -93,7 +93,7 @@
                 {% if error %}
                     <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
-                <h1 class="text-center login-title">Sign in to continue to SSAT</h1>
+                <h1 class="text-center login-title">Sign in to continue to application</h1>
                 <div class="account-wall">
                     {#<img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"#}
                          {#alt="">#}
