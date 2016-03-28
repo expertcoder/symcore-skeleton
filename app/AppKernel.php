@@ -18,8 +18,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new cspoo\Swiftmailer\MailgunBundle\cspooSwiftmailerMailgunBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(), //TODO - This is really only needed for dev and staging, but putting here for the moment.
-            new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(), //TODO - This is really only needed for dev and staging, but putting here for the moment.
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(), //TODO - This is really only needed for dev and beta, but putting here for the moment.
+            new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(), //TODO - This is really only needed for dev and beta, but putting here for the moment.
         ];
 
         if ($this->isDebug()) {
