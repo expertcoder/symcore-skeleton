@@ -1,0 +1,16 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<h3>SSAT Registration</h3>
+<hr>
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+    <div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            {{ 'registration.submit'|trans }}</button>
+    </div>
+
+
+
+{{ form_end(form) }}

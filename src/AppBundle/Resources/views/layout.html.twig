@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{% block title %}SSAT{% endblock title %}</title>
+
+    <style>
+        /*   Prevent top navigation from overlapping with page content,
+            see http://stackoverflow.com/questions/11124777/twitter-bootstrap-navbar-fixed-top-overlapping-site */
+        body { padding-top: 80px; }
+    </style>
+
+    {# These are core file which are needed on very page#}
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    {# Here you can include CSS or Javascript files from various libraries. #}
+    {% block libraries_head %}
+    {% endblock libraries_head %}
+
+    {# Any page specific css code #}
+    {% block stylesheet %}
+    {% endblock stylesheet %}
+
+    {# Any page specific javascript code #}
+    {% block javascript_head %}
+    {% endblock javascript_head %}
+
+</head>
+
+<body {% block body_attributes %}{% endblock %} >
+    <!-- Start top_navbar (Main Menu) -->
+    {% block top_navbar %}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container" >
+                <div class="navbar-header">
+                    <a class="navbar-brand" >SSAT</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+
+                    {% if app.user %}
+                    <p class="navbar-text" >
+                        <a href="{{ path('app_recruiter_home') }}" >Favorites</a>
+                    </p>
+                    <p class="navbar-text" >
+                        <a href="{{ path('app_recruiter_search') }}" >Search</a>
+                    </p>
+                    {% endif %}
+
+
+                    <p class="navbar-text navbar-right">
+                        {% if (app.user) %}
+                            <a href="{{ path('fos_user_security_logout') }}" class="navbar-link"><span class="glyphicon glyphicon-log-out" ></span> Logout</a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}" class="navbar-link"><span class="glyphicon glyphicon-log-in" ></span> Login</a>
+                        {%  endif %}
+                    </p>
+                    <p class="navbar-text navbar-right">
+                        <span class="glyphicon glyphicon-user" ></span>
+                        {% if (app.user) %}
+                            {% if app.user is instanceof('Symfony\\Component\\Security\\Core\\User\\User') %}
+                                Signed in as {{ app.user.email }}
+                            {% else %}
+                                Signed in as {{ app.user.email }}
+                            {% endif %}
+                        {% else %}
+                            Currently not signed in
+                        {%  endif %}
+                    </p>
+                </div>
+            </div>
+        </nav>
+    {% endblock top_navbar %}
+    <!-- End top_navbar (Main Menu) -->
+
+    <div class="container theme-showcase" role="main">
+        <!-- Start layout_body_content  -->
+        {% block layout_body_content %}
+            {% block content %}{% endblock %}
+        {% endblock layout_body_content %}
+        <!-- end layout_body_content  -->
+    </div><!-- close class="container theme-showcase" -->
+
+
+    <!-- Start bottom_navbar -->
+    {% block bottom_navbar %}
+    {% endblock bottom_navbar %}
+    <!-- End bottom_navbar -->
+
+
+    {% block javascript_foot %}
+    {% endblock javascript_foot %}
+</body>
+</html>

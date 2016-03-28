@@ -1,0 +1,17 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block stylesheet %}
+    {{ parent() }}
+
+
+    <style type="text/css" >
+        .container {
+            max-width: 400px;
+        }
+    </style>
+{% endblock stylesheet %}
+
+
+{% block content %}
+    {% block fos_user_content %}{% endblock %}
+{% endblock content %}

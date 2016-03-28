@@ -36,9 +36,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-#TODO - do I want to use this bootstrap 3 option?
-#    form_themes:
-#        - bootstrap_3_layout.html.twig
+    form_themes:
+        - bootstrap_3_layout.html.twig
 
 # Doctrine Configuration
 doctrine:
