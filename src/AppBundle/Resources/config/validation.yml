@@ -1,0 +1,69 @@
+#http://stackoverflow.com/questions/8832916/remove-replace-the-username-field-with-email-using-fosuserbundle-in-symfony2
+AppBundle\Entity\User:
+    properties:
+    # Your custom fields in your user entity, here is an example with FirstName
+#        firstName:
+#            - NotBlank:
+#                message: acme_user.first_name.blank
+#                groups: [ "fosuser_custom_profile" ]
+#            - Length:
+#                min: 2
+#                minMessage: acme_user.first_name.short
+#                max: 255
+#                maxMessage: acme_user.first_name.long
+#                groups: [ "fosuser_custom_profile" ]
+
+
+
+# Note: We still want to validate the email
+# See FOSUserBundle/Resources/config/validation/orm.xml to understand
+# the UniqueEntity constraint that was originally applied to both
+# username and email fields
+#
+# As you can see, we are only applying the UniqueEntity constraint to
+# the email field and not the username field.
+FOS\UserBundle\Model\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+             fields: email
+             errorPath: email
+             message: fos_user.email.already_used
+             groups: [ "fosuser_custom_registration", "fosuser_custom_profile" ]
+
+    properties:
+        email:
+            - NotBlank:
+                message: fos_user.email.blank
+                groups: [ "fosuser_custom_registration", "fosuser_custom_profile" ]
+            - Length:
+                min: 2
+                minMessage: fos_user.email.short
+                max: 255
+                maxMessage: fos_user.email.long
+                groups: [ "fosuser_custom_registration", "ResetPassword" ]
+            - Email:
+                message: fos_user.email.invalid
+                groups: [ "fosuser_custom_registration", "fosuser_custom_profile" ]
+        plainPassword:
+            - NotBlank:
+                message: fos_user.password.blank
+                groups: [ "fosuser_custom_registration", "ResetPassword", "ChangePassword" ]
+            - Length:
+                min: 2
+                max: 4096
+                minMessage: fos_user.password.short
+                groups: [ "fosuser_custom_registration", "fosuser_custom_profile", "ResetPassword", "ChangePassword"]
+
+FOS\UserBundle\Model\Group:
+    properties:
+        name:
+            - NotBlank:
+                message: fos_user.group.blank
+                groups: [ "fosuser_custom_registration" ]
+            - Length:
+                min: 2
+                minMessage: fos_user.group.short
+                max: 255
+                maxMessage: fos_user.group.long
+                groups: [ "fosuser_custom_registration" ]
+
