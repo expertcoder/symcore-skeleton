@@ -21,9 +21,8 @@ This works really well with my "SLAMP server" (Symfony and LAMP). - not currentl
 * Twig Extension.
 * LadybugBundle is already included.
 * Useful Phing tasks included.
+* BaseController, BaseCommand and some helpful classes which you can modify to your liking.
 * Optimisation of Symfony Environments
     * 3 different symfony environments available build - dev, beta and prod.
     * completed eliminated the need for app_dev.php. Instead, app.php can detect environment.
     * No need to pass in environment to console commands. eg no ````bin/console --env=ENV````
-
-    
