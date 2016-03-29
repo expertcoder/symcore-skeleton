@@ -26,3 +26,14 @@ This works really well with my "SLAMP server" (Symfony and LAMP). - not currentl
     * 3 different symfony environments available build - dev, beta and prod.
     * completed eliminated the need for app_dev.php. Instead, app.php can detect environment.
     * No need to pass in environment to console commands. eg no ````bin/console --env=ENV````
+
+
+####TODO
+
+* It would be nice to have a separate subdomain or port with some tools, such as Adminer, PhpMyAdmin, phpinfo etc. This server should be secure.
+
+* Autologin after signup?
+
+* Symcore Bundle, which can be included with composer
+    * Twig extension with some useful filters/test.
+    * Friendly Exception with exception listener.
