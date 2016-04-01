@@ -30,6 +30,8 @@ This works really well with my "SLAMP server" (Symfony and LAMP). - not currentl
 
 ####TODO
 
+* Improve Documentation.
+
 * It would be nice to have a separate subdomain or port with some tools, such as Adminer, PhpMyAdmin, phpinfo etc. This server should be secure.
 
 * Autologin after signup?
