@@ -3,7 +3,7 @@
 This Skeleton application come with common things setup that you would use with almost every project.
 Simply fork this repository and then you can modify what you need.
 
-This works really well with my "SLAMP server" (Symfony and LAMP). - not currently a public repo. 
+This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
 
 ####Features
 
