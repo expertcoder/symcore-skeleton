@@ -32,6 +32,7 @@ This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
 
 * Improve Documentation.
 * It would be nice to have a separate subdomain or port with some tools, such as Adminer, PhpMyAdmin, phpinfo etc. This server should be secure.
+* pre install and configure gedmo/doctrine-extensions bundle?
 * Autologin after signup?
 * Symcore Bundle, which can be included with composer
     * Twig extension with some useful filters/test.
