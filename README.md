@@ -37,3 +37,7 @@ This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
 * Symcore Bundle, which can be included with composer
     * Twig extension with some useful filters/test.
     * Friendly Exception with exception listener.
+
+####TODO - for separate SymcoreBundle
+* before and after actions in controller - see realtyhub/src/Realtyhub/MiscBundle/EventListener/ControllerListener.php
+   
