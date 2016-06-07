@@ -34,10 +34,6 @@ This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
 * It would be nice to have a separate subdomain or port with some tools, such as Adminer, PhpMyAdmin, phpinfo etc. This server should be secure.
 * pre install and configure gedmo/doctrine-extensions bundle?
 * Autologin after signup?
-* Symcore Bundle, which can be included with composer
+* SymcoreBundle, which can be included with composer
     * Twig extension with some useful filters/test.
     * Friendly Exception with exception listener.
-
-####TODO - for separate SymcoreBundle
-* before and after actions in controller - see realtyhub/src/Realtyhub/MiscBundle/EventListener/ControllerListener.php
-   
