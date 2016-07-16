@@ -38,7 +38,7 @@ This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
     * Twig extension with some useful filters/test.
     * Friendly Exception with exception listener.
 * ServicesAndReposTrait (ZH)
-* AbstractActivity (ZH)
+* AbstractActivity including Abstract server (ZH)
 * Rename BaseController to AbstractController?
 
 
