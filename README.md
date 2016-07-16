@@ -37,3 +37,11 @@ This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
 * SymcoreBundle, which can be included with composer
     * Twig extension with some useful filters/test.
     * Friendly Exception with exception listener.
+* ServicesAndReposTrait (ZH)
+* AbstractActivity (ZH)
+* Rename BaseController to AbstractController?
+
+
+####TODO Ideas for Symapi Bundle
+* Tailor FosUser actions for REST API (ZH)
+* 
