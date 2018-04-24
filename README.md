@@ -1,11 +1,13 @@
-##Symcore - Symfony 3 Skeleton Application
+![Freelance Banner](https://s3.eu-central-1.amazonaws.com/static.expertcoder.io/github-banner/banner.png)
+
+## Symcore - Symfony 3 Skeleton Application
 
 This Skeleton application come with common things setup that you would use with almost every project.
 Simply fork this repository and then you can modify what you need.
 
 This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
 
-####Features
+#### Features
 
 * FOSUserBundle
     * Bundle is already included
@@ -28,7 +30,7 @@ This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
     * No need to pass in environment to console commands. eg no ````bin/console --env=ENV````
 
 
-####TODO
+#### TODO
 
 * Improve Documentation.
 * It would be nice to have a separate subdomain or port with some tools, such as Adminer, PhpMyAdmin, phpinfo etc. This server should be secure.
@@ -42,6 +44,6 @@ This works well with my "SLAMP server" (https://github.com/expertcoder/slamp)
 * Rename BaseController to AbstractController?
 
 
-####TODO Ideas for Symapi Bundle
+#### TODO Ideas for Symapi Bundle
 * Tailor FosUser actions for REST API (ZH)
 * 
